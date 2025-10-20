@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Our Construction Co.</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        form { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;
+        }
+        button { background-color: #0056b3; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #004a9a; }
+        .success-message { color: green; font-weight: bold; }
+        .error-message { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <form action="process.php" method="POST">
+        <h2>Customer Profile & Project Inquiry</h2>
+        <p>Please fill out the form below so we can understand your needs.</p>
+
+        <?php
+            if (isset($_GET['status']) && $_GET['status'] == 'success') {
+                echo '<p class="success-message">Thank you! Your form has been submitted.</p>';
+            } elseif (isset($_GET['status']) && $_GET['status'] == 'error') {
+                echo '<p class="error-message">Something went wrong. Please try again.</p>';
+            }
+        ?>
+
+        <div>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        <div>
+            <label for="service_type">Service Needed:</label>
+            <select id="service_type" name="service_type">
+                <option value="New Construction">New Construction</option>
+                <option value="Home Renovation">Home Renovation</option>
+                <option value="Kitchen/Bath Remodel">Kitchen/Bath Remodel</option>
+                <option value="Repair/Maintenance">Repair/Maintenance</option>
+                <option value="Consultation">Consultation</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div>
+            <label for="project_details">Project Details:</label>
+            <textarea id="project_details" name="project_details" rows="5"></textarea>
+        </div>
+        <div>
+            <button type="submit">Submit Inquiry</button>
+        </div>
+    </form>
+
+</body>
+</html>
